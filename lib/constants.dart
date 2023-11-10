@@ -1,40 +1,46 @@
-const apiKey = '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';
+import 'dart:math';
 
-Map<String, Map<String, Map<String, String>>> formulas = {
-  "verbal": {
-    "sekarang": {"ke-sedang-an": "is/am/are kerjaing", "ke-sudah-an": "have kerjaed2", "ke-akan-an": "will kerja", "kosong": "kerja"},
-    "lampau": {"ke-sedang-an": "was/were kerjaing", "ke-sudah-an": "had kerjaed2", "ke-akan-an": "would kerja", "kosong": "kerjaed1"},
-    "akan datang": {"ke-sedang-an": "will be kerjaing", "ke-sudah-an": "will have kerjaed2", "ke-akan-an": "", "kosong": "will kerja"}
-  },
-  "nominal": {
-    "sekarang": {"ke-sedang-an": "is/am/are", "ke-sudah-an": "have been", "ke-akan-an": "would be", "kosong": "is/am/are"},
-    "lampau": {"ke-sedang-an": "was/were", "ke-sudah-an": "had been", "ke-akan-an": "", "kosong": "was/were"},
-    "akan datang": {"ke-sedang-an": "will be", "ke-sudah-an": "will have been", "ke-akan-an": "", "kosong": "will be"}
-  },
-  "pasif": {
-    "sekarang": {
-      "ke-sedang-an": "is/am/are being kerjaed2",
-      "ke-sudah-an": "have been kerjaed2",
-      "ke-akan-an": "would be kerjaed2",
-      "kosong": "is/am/are kerjaed2"
-    },
-    "lampau": {
-      "ke-sedang-an": "was/were being kerjaed2",
-      "ke-sudah-an": "had been kerjaed2",
-      "ke-akan-an": "",
-      "kosong": "was/were kerjaed2"
-    },
-    "akan datang": {
-      "ke-sedang-an": "will be being kerjaed2",
-      "ke-sudah-an": "will have been kerjaed2",
-      "ke-akan-an": "",
-      "kosong": "will be kerjaed2"
-    }
-  }
-};
-
-String generateFormula(String jenisKalimat, String konsepWaktu, String aspek) {
-  String formula = formulas[jenisKalimat.toLowerCase()]![konsepWaktu.toLowerCase()]![aspek.toLowerCase()]!;
-
-  return formula == '' ? 'Formula tidak ditemukan' : formula;
+String getRandomFormula(String currentFormula) {
+  var random = Random();
+  String randomFormula;
+  do {
+    randomFormula = formulasList[random.nextInt(formulasList.length)];
+  } while (randomFormula == currentFormula);
+  return randomFormula;
 }
+
+List<String> formulasList = [
+  "kerja",
+  "will kerja",
+  "is/am/are kerjaing",
+  "kerjaed1",
+  "have kerjaed2",
+  "would kerja",
+  "was/were kerjaing",
+  "will be kerjaing",
+  "had kerjaed2",
+  "will have kerjaed2",
+  "have been kerjaing",
+  "is/am/are",
+  "will be",
+  "is/am/are",
+  "was/were",
+  "have been",
+  "would be",
+  "was/were",
+  "will be",
+  "had been",
+  "will have been",
+  "have been",
+  "is/am/are kerjaed2",
+  "will be kerjaed2",
+  "is/am/are being kerjaed2",
+  "was/were kerjaed2",
+  "have been kerjaed2",
+  "would be kerjaed2",
+  "was/were being kerjaed2",
+  "will be being kerjaed2",
+  "had been kerjaed2",
+  "will have been kerjaed2",
+  "have been being kerjaed2"
+];
