@@ -30,7 +30,7 @@ class _ChoicesState extends State<Choices> {
         Choice(
           color: const Color(0xFFA7ECEE),
           dialogTitle: 'Jenis Kalimat',
-          dialogChoices: const ['Verbal', 'Nominal', 'Pasif'],
+          dialogChoices: const ['Verbal', 'Nomina', 'Pasif'],
           choices: widget.choices,
           answer: widget.question['jenis_kalimat']!,
           isTrue: widget.answer['type'],

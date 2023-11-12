@@ -33,6 +33,7 @@ class _GamePageState extends State<GamePage> {
   int currentQuestionIndex = 0;
   int totalScore = 0;
 
+  String displayedText = '';
   String wrongFormula = '';
 
   Map<String, String> getNextQuestion() {
@@ -51,6 +52,7 @@ class _GamePageState extends State<GamePage> {
     question = questions[currentQuestionIndex];
 
     setState(() {
+      displayedText = question['kalimat']!;
       wrongFormula = getRandomFormula(question['formula']!);
     });
 
@@ -65,27 +67,65 @@ class _GamePageState extends State<GamePage> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height / 3,
-                padding: const EdgeInsets.all(8.0),
-                margin: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEADBC8),
-                  border: Border.all(color: Colors.black, width: 5),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Text(
-                    question['kalimat']!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Poppins',
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
+              Stack(
+                children: [
+                  GestureDetector(
+                    onTap: answer['type'] != null
+                        ? () {
+                            setState(() {
+                              if (displayedText == question['kalimat']!) {
+                                displayedText = question['bahasa_inggris']!;
+                              } else {
+                                displayedText = question['kalimat']!;
+                              }
+                            });
+                          }
+                        : null,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 3,
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEADBC8),
+                        border: Border.all(color: Colors.black, width: 5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Text(
+                            displayedText,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: AnimatedScale(
+                      scale: answer['type'] != null ? 1 : 0,
+                      duration: const Duration(milliseconds: 100),
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(displayedText == question['kalimat']! ? 'assets/imgs/ind.png' : 'assets/imgs/en.png'),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Choices(
                 answer: answer,
@@ -122,6 +162,7 @@ class _GamePageState extends State<GamePage> {
                                   };
 
                                   question = getNextQuestion();
+                                  displayedText = question['kalimat']!;
                                   wrongFormula = getRandomFormula(question['formula']!);
                                 });
                               },

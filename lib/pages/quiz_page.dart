@@ -28,11 +28,13 @@ class _QuizPageState extends State<QuizPage> {
     'formula': null,
   };
 
+  String displayedText = '';
   String wrongFormula = '';
 
   @override
   void initState() {
     setState(() {
+      displayedText = widget.question['kalimat']!;
       wrongFormula = getRandomFormula(widget.question['formula']!);
     });
 
@@ -47,27 +49,65 @@ class _QuizPageState extends State<QuizPage> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              Container(
-                height: MediaQuery.of(context).size.height / 3,
-                padding: const EdgeInsets.all(8.0),
-                margin: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEADBC8),
-                  border: Border.all(color: Colors.black, width: 5),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Center(
-                  child: Text(
-                    widget.question['kalimat']!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Poppins',
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
+              Stack(
+                children: [
+                  GestureDetector(
+                    onTap: answer['type'] != null
+                        ? () {
+                            setState(() {
+                              if (displayedText == widget.question['kalimat']!) {
+                                displayedText = widget.question['bahasa_inggris']!;
+                              } else {
+                                displayedText = widget.question['kalimat']!;
+                              }
+                            });
+                          }
+                        : null,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 3,
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEADBC8),
+                        border: Border.all(color: Colors.black, width: 5),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Center(
+                        child: SingleChildScrollView(
+                          physics: const BouncingScrollPhysics(),
+                          child: Text(
+                            displayedText,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: AnimatedScale(
+                      scale: answer['type'] != null ? 1 : 0,
+                      duration: const Duration(milliseconds: 100),
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Image.asset(displayedText == widget.question['kalimat']! ? 'assets/imgs/ind.png' : 'assets/imgs/en.png'),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Choices(
                 answer: answer,
