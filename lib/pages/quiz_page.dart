@@ -7,7 +7,7 @@ import '../widgets/scale_dialog.dart';
 class QuizPage extends StatefulWidget {
   const QuizPage({super.key, required this.question});
 
-  final Map<String, String> question;
+  final Map<String, dynamic> question;
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -35,7 +35,7 @@ class _QuizPageState extends State<QuizPage> {
   void initState() {
     setState(() {
       displayedText = widget.question['kalimat']!;
-      wrongFormula = getRandomFormula(widget.question['formula']!);
+      wrongFormula = getRandomFormula(formulaList[widget.question['formula']!]);
     });
 
     super.initState();
@@ -113,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
                 answer: answer,
                 question: widget.question,
                 choices: choices,
-                formula: widget.question['formula']!,
+                formula: formulaList[widget.question['formula']!],
                 randomFormula: wrongFormula,
               ),
               answer['type'] == null
@@ -141,10 +141,10 @@ class _QuizPageState extends State<QuizPage> {
                           );
                         } else if (choices['type'] != '' && choices['time'] != '' && choices['aspect'] != '' && choices['formula'] != '') {
                           setState(() {
-                            answer['type'] = choices['type'] == widget.question['jenis_kalimat'];
-                            answer['time'] = choices['time'] == widget.question['konsep_waktu'];
-                            answer['aspect'] = choices['aspect'] == widget.question['aspek'];
-                            answer['formula'] = choices['formula'] == widget.question['formula'];
+                            answer['type'] = choices['type'] == jenisKalimatList[widget.question['jenis_kalimat']];
+                            answer['time'] = choices['time'] == konsepWaktuList[widget.question['konsep_waktu']];
+                            answer['aspect'] = choices['aspect'] == aspekList[widget.question['aspek']];
+                            answer['formula'] = choices['formula'] == formulaList[widget.question['formula']];
                           });
                         }
                       },

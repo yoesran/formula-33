@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formula_33/constants.dart';
 
 import './choice.dart';
 
@@ -13,7 +14,7 @@ class Choices extends StatefulWidget {
   });
 
   final Map<String, bool?> answer;
-  final Map<String, String> question;
+  final Map<String, dynamic> question;
   final Map<String, String> choices;
   final String formula;
   final String randomFormula;
@@ -32,7 +33,7 @@ class _ChoicesState extends State<Choices> {
           dialogTitle: 'Jenis Kalimat',
           dialogChoices: const ['Verbal', 'Nomina', 'Pasif'],
           choices: widget.choices,
-          answer: widget.question['jenis_kalimat']!,
+          answer: jenisKalimatList[widget.question['jenis_kalimat']!],
           isTrue: widget.answer['type'],
           type: 'type',
         ),
@@ -41,7 +42,7 @@ class _ChoicesState extends State<Choices> {
           dialogTitle: 'Waktu',
           dialogChoices: const ['Sekarang', 'Lampau', 'Akan Datang'],
           choices: widget.choices,
-          answer: widget.question['konsep_waktu']!,
+          answer: konsepWaktuList[widget.question['konsep_waktu']!],
           isTrue: widget.answer['time'],
           type: 'time',
         ),
@@ -50,7 +51,7 @@ class _ChoicesState extends State<Choices> {
           dialogTitle: 'Aspek',
           dialogChoices: const ['ke-sedang-an', 'ke-sudah-an', 'ke-akandatang-an', 'kosong'],
           choices: widget.choices,
-          answer: widget.question['aspek']!,
+          answer: aspekList[widget.question['aspek']!],
           isTrue: widget.answer['aspect'],
           type: 'aspect',
         ),
@@ -59,7 +60,7 @@ class _ChoicesState extends State<Choices> {
           dialogTitle: 'Formula',
           dialogChoices: [widget.formula, widget.randomFormula],
           choices: widget.choices,
-          answer: widget.question['formula']!,
+          answer: formulaList[widget.question['formula']!],
           isTrue: widget.answer['formula'],
           type: 'formula',
         ),

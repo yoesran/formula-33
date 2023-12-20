@@ -29,14 +29,14 @@ class _GamePageState extends State<GamePage> {
     'formula': null,
   };
 
-  Map<String, String> question = {};
+  Map<String, dynamic> question = {};
   int currentQuestionIndex = 0;
   int totalScore = 0;
 
   String displayedText = '';
   String wrongFormula = '';
 
-  Map<String, String> getNextQuestion() {
+  Map<String, dynamic> getNextQuestion() {
     var random = Random();
     int nextIndex;
     do {
@@ -53,7 +53,7 @@ class _GamePageState extends State<GamePage> {
 
     setState(() {
       displayedText = question['kalimat']!;
-      wrongFormula = getRandomFormula(question['formula']!);
+      wrongFormula = getRandomFormula(formulaList[question['formula']!]);
     });
 
     super.initState();
@@ -131,7 +131,7 @@ class _GamePageState extends State<GamePage> {
                 answer: answer,
                 question: question,
                 choices: choices,
-                formula: question['formula']!,
+                formula: formulaList[question['formula']!],
                 randomFormula: wrongFormula,
               ),
               GestureDetector(
@@ -163,7 +163,7 @@ class _GamePageState extends State<GamePage> {
 
                                   question = getNextQuestion();
                                   displayedText = question['kalimat']!;
-                                  wrongFormula = getRandomFormula(question['formula']!);
+                                  wrongFormula = getRandomFormula(formulaList[question['formula']!]);
                                 });
                               },
                               child: Container(
@@ -259,18 +259,18 @@ class _GamePageState extends State<GamePage> {
                   } else if (choices['type'] != '' && choices['time'] != '' && choices['aspect'] != '' && choices['formula'] != '') {
                     var score = 0;
 
-                    score += choices['type'] == question['jenis_kalimat'] ? 25 : 0;
-                    score += choices['time'] == question['konsep_waktu'] ? 25 : 0;
-                    score += choices['aspect'] == question['aspek'] ? 25 : 0;
-                    score += choices['formula'] == question['formula'] ? 25 : 0;
+                    score += choices['type'] == jenisKalimatList[question['jenis_kalimat']] ? 25 : 0;
+                    score += choices['time'] == konsepWaktuList[question['konsep_waktu']] ? 25 : 0;
+                    score += choices['aspect'] == aspekList[question['aspek']] ? 25 : 0;
+                    score += choices['formula'] == formulaList[question['formula']] ? 25 : 0;
 
                     totalScore += score;
 
                     setState(() {
-                      answer['type'] = choices['type'] == question['jenis_kalimat'];
-                      answer['time'] = choices['time'] == question['konsep_waktu'];
-                      answer['aspect'] = choices['aspect'] == question['aspek'];
-                      answer['formula'] = choices['formula'] == question['formula'];
+                      answer['type'] = choices['type'] == jenisKalimatList[question['jenis_kalimat']];
+                      answer['time'] = choices['time'] == konsepWaktuList[question['konsep_waktu']];
+                      answer['aspect'] = choices['aspect'] == aspekList[question['aspek']];
+                      answer['formula'] = choices['formula'] == formulaList[question['formula']];
                     });
                   }
                 },

@@ -4,12 +4,31 @@ String getRandomFormula(String currentFormula) {
   var random = Random();
   String randomFormula;
   do {
-    randomFormula = formulasList[random.nextInt(formulasList.length)];
+    randomFormula = formulaList[random.nextInt(formulaList.length)];
   } while (randomFormula == currentFormula);
   return randomFormula;
 }
 
-List<String> formulasList = [
+List<String> jenisKalimatList = [
+  "Verbal",
+  "Nomina",
+  "Pasif",
+];
+
+List<String> konsepWaktuList = [
+  "Sekarang",
+  "Lampau",
+  "Akan Datang",
+];
+
+List<String> aspekList = [
+  "ke-sedang-an",
+  "ke-sudah-an",
+  "ke-akandatang-an",
+  "kosong",
+];
+
+List<String> formulaList = [
   "kerja",
   "will kerja",
   "is/am/are kerjaing",
