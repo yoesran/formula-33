@@ -29,13 +29,13 @@ class _QuizPageState extends State<QuizPage> {
   };
 
   String displayedText = '';
-  String wrongFormula = '';
+  // String wrongFormula = '';
 
   @override
   void initState() {
     setState(() {
       displayedText = widget.question['kalimat']!;
-      wrongFormula = getRandomFormula(formulaList[widget.question['formula']!]);
+      // wrongFormula = getRandomFormula(formulaList[widget.question['formula']!]);
     });
 
     super.initState();
@@ -114,7 +114,7 @@ class _QuizPageState extends State<QuizPage> {
                 question: widget.question,
                 choices: choices,
                 formula: formulaList[widget.question['formula']!],
-                randomFormula: wrongFormula,
+                // randomFormula: wrongFormula,
               ),
               answer['type'] == null
                   ? GestureDetector(

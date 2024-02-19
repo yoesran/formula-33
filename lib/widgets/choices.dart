@@ -10,14 +10,14 @@ class Choices extends StatefulWidget {
     required this.question,
     required this.choices,
     required this.formula,
-    required this.randomFormula,
+    // required this.randomFormula,
   });
 
   final Map<String, bool?> answer;
   final Map<String, dynamic> question;
   final Map<String, String> choices;
   final String formula;
-  final String randomFormula;
+  // final String randomFormula;
 
   @override
   State<Choices> createState() => _ChoicesState();
@@ -58,11 +58,12 @@ class _ChoicesState extends State<Choices> {
         Choice(
           color: const Color(0xFFF9B572),
           dialogTitle: 'Formula',
-          dialogChoices: [widget.formula, widget.randomFormula],
+          dialogChoices: formulaList,
           choices: widget.choices,
           answer: formulaList[widget.question['formula']!],
           isTrue: widget.answer['formula'],
           type: 'formula',
+          isStretched: false,
         ),
       ],
     );

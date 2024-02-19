@@ -13,6 +13,7 @@ class Choice extends StatefulWidget {
     required this.isTrue,
     required this.type,
     required this.answer,
+    this.isStretched = true,
   });
 
   final Color color;
@@ -22,6 +23,7 @@ class Choice extends StatefulWidget {
   final List<String> dialogChoices;
   final Map<String, String> choices;
   final bool? isTrue;
+  final bool isStretched;
 
   @override
   State<Choice> createState() => _ChoiceState();
@@ -65,6 +67,7 @@ class _ChoiceState extends State<Choice> {
 
                   Navigator.of(context).pop();
                 },
+                isStretched: widget.isStretched,
               );
             }).toList(),
           ),

@@ -34,7 +34,7 @@ class _GamePageState extends State<GamePage> {
   int totalScore = 0;
 
   String displayedText = '';
-  String wrongFormula = '';
+  // String wrongFormula = '';
 
   Map<String, dynamic> getNextQuestion() {
     var random = Random();
@@ -53,7 +53,7 @@ class _GamePageState extends State<GamePage> {
 
     setState(() {
       displayedText = question['kalimat']!;
-      wrongFormula = getRandomFormula(formulaList[question['formula']!]);
+      // wrongFormula = getRandomFormula(formulaList[question['formula']!]);
     });
 
     super.initState();
@@ -132,7 +132,7 @@ class _GamePageState extends State<GamePage> {
                 question: question,
                 choices: choices,
                 formula: formulaList[question['formula']!],
-                randomFormula: wrongFormula,
+                // randomFormula: wrongFormula,
               ),
               GestureDetector(
                 onTap: () {
@@ -163,7 +163,7 @@ class _GamePageState extends State<GamePage> {
 
                                   question = getNextQuestion();
                                   displayedText = question['kalimat']!;
-                                  wrongFormula = getRandomFormula(formulaList[question['formula']!]);
+                                  // wrongFormula = getRandomFormula(formulaList[question['formula']!]);
                                 });
                               },
                               child: Container(
