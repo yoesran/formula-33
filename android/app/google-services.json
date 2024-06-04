@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "47007928360",
+    "project_id": "formula-33",
+    "storage_bucket": "formula-33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47007928360:android:5e3e78a3f70d51561b251d",
+        "android_client_info": {
+          "package_name": "com.example.formula_33"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPOkgV5eaqsdCzTXDWhXe8X5kPhrX13is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

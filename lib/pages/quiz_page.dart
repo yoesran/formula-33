@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+// import '../constants.dart';
 import '../widgets/choices.dart';
 import '../widgets/scale_dialog.dart';
 
@@ -113,8 +113,9 @@ class _QuizPageState extends State<QuizPage> {
                 answer: answer,
                 question: widget.question,
                 choices: choices,
-                formula: formulaList[widget.question['formula']!],
+                // formula: widget.question['formula'],
                 // randomFormula: wrongFormula,
+                borderColor: Colors.black,
               ),
               answer['type'] == null
                   ? GestureDetector(
@@ -141,10 +142,10 @@ class _QuizPageState extends State<QuizPage> {
                           );
                         } else if (choices['type'] != '' && choices['time'] != '' && choices['aspect'] != '' && choices['formula'] != '') {
                           setState(() {
-                            answer['type'] = choices['type'] == jenisKalimatList[widget.question['jenis_kalimat']];
-                            answer['time'] = choices['time'] == konsepWaktuList[widget.question['konsep_waktu']];
-                            answer['aspect'] = choices['aspect'] == aspekList[widget.question['aspek']];
-                            answer['formula'] = choices['formula'] == formulaList[widget.question['formula']];
+                            answer['type'] = choices['type'] == widget.question['jenis_kalimat'];
+                            answer['time'] = choices['time'] == widget.question['konsep_waktu'];
+                            answer['aspect'] = choices['aspect'] == widget.question['aspek'];
+                            answer['formula'] = choices['formula'] == widget.question['formula'];
                           });
                         }
                       },

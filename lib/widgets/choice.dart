@@ -7,6 +7,7 @@ class Choice extends StatefulWidget {
   const Choice({
     super.key,
     required this.color,
+    required this.borderColor,
     required this.dialogTitle,
     required this.dialogChoices,
     required this.choices,
@@ -17,6 +18,7 @@ class Choice extends StatefulWidget {
   });
 
   final Color color;
+  final Color borderColor;
   final String dialogTitle;
   final String type;
   final String answer;
@@ -99,7 +101,7 @@ class _ChoiceState extends State<Choice> {
             margin: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               color: widget.color,
-              border: Border.all(color: Colors.black, width: 5),
+              border: Border.all(color: widget.borderColor, width: 5),
               borderRadius: BorderRadius.circular(5),
             ),
             child: Center(
