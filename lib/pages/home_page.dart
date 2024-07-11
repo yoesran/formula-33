@@ -11,39 +11,41 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 50.0, right: 12.0, left: 12.0),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Text(
-                  'Formula 33 Bahasa Inggris',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 50.0, right: 12.0, left: 12.0),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'Formula 33 Bahasa Inggris',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Poppins',
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 75),
-            MenuButton(
-              color: const Color(0xFF9400FF),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const GamePage())),
-              iconPath: 'assets/imgs/brain.png',
-              text: 'Mulai Bermain',
-            ),
-            const SizedBox(height: 75),
-            MenuButton(
-              color: Colors.cyan,
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const QuizListPage())),
-              iconPath: 'assets/imgs/dictionary.png',
-              text: 'Mulai Belajar',
-            ),
-          ],
+              const SizedBox(height: 75),
+              MenuButton(
+                color: const Color(0xFF9400FF),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const GamePage())),
+                iconPath: 'assets/imgs/brain.png',
+                text: 'Mulai Bermain',
+              ),
+              const SizedBox(height: 75),
+              MenuButton(
+                color: Colors.cyan,
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const QuizListPage())),
+                iconPath: 'assets/imgs/dictionary.png',
+                text: 'Mulai Belajar',
+              ),
+            ],
+          ),
         ),
       ),
     );
