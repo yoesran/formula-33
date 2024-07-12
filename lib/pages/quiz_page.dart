@@ -171,7 +171,53 @@ class _QuizPageState extends State<QuizPage> {
                         ),
                       ),
                     )
-                  : const SizedBox(),
+                  : GestureDetector(
+                      onTap: () {
+                        var text =
+                            'Kalimat:\n${widget.question['kalimat']}\n\nJenis Kalimat:\n${widget.question['jenis_kalimat']}\n(Jawaban Anda: ${choices["type"]})\n\nWaktu:\n${widget.question['konsep_waktu']}\n(Jawaban Anda: ${choices["time"]})\n\nAspek:\n${widget.question['aspek']}\n(Jawaban Anda: ${choices["aspect"]})\n\nFormula:\n${widget.question['formula']}\n(Jawaban Anda: ${choices["formula"]})\n\nBahasa Inggris:\n${widget.question['bahasa_inggris']}';
+
+                        scaleDialog(
+                          context,
+                          SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Text(
+                                  text,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Poppins',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        margin: const EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFA6FF96),
+                          border: Border.all(color: Colors.black, width: 5),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            'Cek Jawaban',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Poppins',
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
